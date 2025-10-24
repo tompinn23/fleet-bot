@@ -33,7 +33,7 @@ jobs:
       
       - name: Build app bundle
         run: |
-          cp -r bot dist/
+          #cp -r bot dist/
           uv run shiv --site-packages dist --compressed --compile-pyc -o api-${{ steps.version_info.outputs.version }}.pyz -e bot.main:main
 
       - name: Upload API artifact
