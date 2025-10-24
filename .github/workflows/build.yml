@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -34,11 +36,11 @@ jobs:
       - name: Build app bundle
         run: |
           #cp -r bot dist/
-          uv run shiv --site-packages dist --compressed --compile-pyc -o api-${{ steps.version_info.outputs.version }}.pyz -e bot.main:main
+          uv run shiv --site-packages dist --compressed --compile-pyc -o bot-${{ steps.version_info.outputs.version }}.pyz -e bot.main:main
 
       - name: Upload API artifact
         uses: actions/upload-artifact@v4
         with:
-          name: api-${{ steps.version_info.outputs.version }}.pyz
-          path: api-${{ steps.version_info.outputs.version }}.pyz
+          name: bot-${{ steps.version_info.outputs.version }}.pyz
+          path: bot-${{ steps.version_info.outputs.version }}.pyz
 

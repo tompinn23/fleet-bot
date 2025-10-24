@@ -29,9 +29,6 @@ dev = [
 
 [tool.setuptools_scm]
 
-[tool.pogo]
-migrations = './migrations'
-database_config = '{POGO_DATABASE}'
 
 [tool.pyright]
 venvPath = "."
