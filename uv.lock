@@ -167,6 +167,48 @@ wheels = [
 ]
 
 [[package]]
+name = "fleet-bot"
+source = { editable = "." }
+dependencies = [
+    { name = "aio-pika" },
+    { name = "asyncpg" },
+    { name = "hikari" },
+    { name = "hikari-arc" },
+    { name = "multidict" },
+    { name = "pogo-migrate" },
+    { name = "pydantic" },
+    { name = "pydantic-config" },
+    { name = "uvloop", marker = "sys_platform == 'linux'" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "pip" },
+    { name = "setuptools-scm" },
+    { name = "shiv" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "aio-pika", specifier = ">=9.5.7" },
+    { name = "asyncpg", specifier = ">=0.30.0" },
+    { name = "hikari", specifier = ">=2.4.1" },
+    { name = "hikari-arc", specifier = ">=2.1.1" },
+    { name = "multidict", specifier = "==6.6.3" },
+    { name = "pogo-migrate", specifier = ">=0.3.3" },
+    { name = "pydantic", specifier = ">=2.12.3" },
+    { name = "pydantic-config", specifier = ">=0.3.0" },
+    { name = "uvloop", marker = "sys_platform == 'linux'", specifier = ">=0.21.0" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "pip", specifier = ">=25.2" },
+    { name = "setuptools-scm", specifier = ">=9.2.2" },
+    { name = "shiv", specifier = ">=1.0.8" },
+]
+
+[[package]]
 name = "frozenlist"
 version = "1.8.0"
 source = { registry = "https://pypi.org/simple" }
@@ -495,48 +537,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/20/c5/dbbc27b814c71676593d1c3f718e6cd7d4f00652cefa24b75f7aa3efb25e/pydantic_settings-2.11.0.tar.gz", hash = "sha256:d0e87a1c7d33593beb7194adb8470fc426e95ba02af83a0f23474a04c9a08180", size = 188394, upload-time = "2025-09-24T14:19:11.764Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/83/d6/887a1ff844e64aa823fb4905978d882a633cfe295c32eacad582b78a7d8b/pydantic_settings-2.11.0-py3-none-any.whl", hash = "sha256:fe2cea3413b9530d10f3a5875adffb17ada5c1e1bab0b2885546d7310415207c", size = 48608, upload-time = "2025-09-24T14:19:10.015Z" },
-]
-
-[[package]]
-name = "pythia-bot"
-source = { editable = "." }
-dependencies = [
-    { name = "aio-pika" },
-    { name = "asyncpg" },
-    { name = "hikari" },
-    { name = "hikari-arc" },
-    { name = "multidict" },
-    { name = "pogo-migrate" },
-    { name = "pydantic" },
-    { name = "pydantic-config" },
-    { name = "uvloop", marker = "sys_platform == 'linux'" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "pip" },
-    { name = "setuptools-scm" },
-    { name = "shiv" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "aio-pika", specifier = ">=9.5.7" },
-    { name = "asyncpg", specifier = ">=0.30.0" },
-    { name = "hikari", specifier = ">=2.4.1" },
-    { name = "hikari-arc", specifier = ">=2.1.1" },
-    { name = "multidict", specifier = "==6.6.3" },
-    { name = "pogo-migrate", specifier = ">=0.3.3" },
-    { name = "pydantic", specifier = ">=2.12.3" },
-    { name = "pydantic-config", specifier = ">=0.3.0" },
-    { name = "uvloop", marker = "sys_platform == 'linux'", specifier = ">=0.21.0" },
-]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "pip", specifier = ">=25.2" },
-    { name = "setuptools-scm", specifier = ">=9.2.2" },
-    { name = "shiv", specifier = ">=1.0.8" },
 ]
 
 [[package]]

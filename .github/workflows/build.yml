@@ -1,7 +1,7 @@
 name: Build
 
 permissions:
-  write: true
+  contents: write
 
 on:
   push:
