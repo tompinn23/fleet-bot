@@ -1,5 +1,8 @@
 name: Build
 
+permissions:
+  write: true
+
 on:
   push:
     tags:
@@ -39,9 +42,13 @@ jobs:
           #cp -r bot dist/
           uv run shiv --site-packages dist --compressed --compile-pyc -o bot-${{ steps.version_info.outputs.version }}.pyz -e bot.main:main
 
-      - name: Upload API artifact
-        uses: actions/upload-artifact@v4
+      #- name: Upload API artifact
+      #  uses: actions/upload-artifact@v4
+      #  with:
+      #    name: bot-${{ steps.version_info.outputs.version }}.pyz
+      #    path: bot-${{ steps.version_info.outputs.version }}.pyz
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
         with:
-          name: bot-${{ steps.version_info.outputs.version }}.pyz
-          path: bot-${{ steps.version_info.outputs.version }}.pyz
+          files: bot-${{ steps.version_info.outputs.version }}.pyz
 

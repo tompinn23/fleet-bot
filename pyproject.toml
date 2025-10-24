@@ -1,5 +1,5 @@
 [project]
-name = "pythia-bot"
+name = "fleet-bot"
 description = "Add your description here"
 dynamic = ["version"]
 readme = "README.md"
