@@ -1,7 +1,7 @@
 [project]
 name = "pythia-bot"
-version = "0.1.0"
 description = "Add your description here"
+dynamic = ["version"]
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -16,12 +16,18 @@ dependencies = [
     "pydantic-config>=0.3.0",
 ]
 
+[build-system]
+requires = ["setuptools>=80", "setuptools-scm>=8"]
+build-backend = "setuptools.build_meta"
+
 [dependency-groups]
 dev = [
     "pip>=25.2",
     "setuptools-scm>=9.2.2",
     "shiv>=1.0.8",
 ]
+
+[tool.setuptools_scm]
 
 [tool.pogo]
 migrations = './migrations'

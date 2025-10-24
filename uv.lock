@@ -499,8 +499,7 @@ wheels = [
 
 [[package]]
 name = "pythia-bot"
-version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "aio-pika" },
     { name = "asyncpg" },

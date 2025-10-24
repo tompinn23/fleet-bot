@@ -5,7 +5,7 @@ on:
     branches: [ trunk ]
 
 jobs:
-  build-api:
+  build-bot:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,18 +24,17 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r <(uv export --no-default-groups --group api) --target dist/
+          pip install -r <(uv export --no-dev) --target dist/
 
       - name: Get Version
         id: version_info
         run: |
-          VERSION=$(python -c "from importlib.metadata import version; print(version('pythia'))")
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "version=$(uv run setuptools-scm)" >> $GITHUB_OUTPUT
       
       - name: Build app bundle
         run: |
-          cp -r api dist/
-          uv run shiv --site-packages dist --compressed --compile-pyc -o api-${{ steps.version_info.outputs.version }}.pyz -e api.__main__:main
+          cp -r bot dist/
+          uv run shiv --site-packages dist --compressed --compile-pyc -o api-${{ steps.version_info.outputs.version }}.pyz -e bot.main:main
 
       - name: Upload API artifact
         uses: actions/upload-artifact@v4
