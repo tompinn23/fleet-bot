@@ -1,0 +1,33 @@
+[project]
+name = "pythia-bot"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "aio-pika>=9.5.7",
+    "asyncpg>=0.30.0",
+    "multidict==6.6.3",
+    "pogo-migrate>=0.3.3",
+    "uvloop>=0.21.0; sys_platform == 'linux'",
+    "hikari>=2.4.1",
+    "hikari-arc>=2.1.1",
+    "pydantic>=2.12.3",
+    "pydantic-config>=0.3.0",
+]
+
+[dependency-groups]
+dev = [
+    "pip>=25.2",
+    "setuptools-scm>=9.2.2",
+    "shiv>=1.0.8",
+]
+
+[tool.pogo]
+migrations = './migrations'
+database_config = '{POGO_DATABASE}'
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+

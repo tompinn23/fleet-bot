@@ -1,0 +1,45 @@
+name: Build
+
+on:
+  push:
+    branches: [ trunk ]
+
+jobs:
+  build-api:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Install shiv
+        run: |
+          uv sync --locked --only-dev
+
+      - name: Install dependencies
+        run: |
+          pip install -r <(uv export --no-default-groups --group api) --target dist/
+
+      - name: Get Version
+        id: version_info
+        run: |
+          VERSION=$(python -c "from importlib.metadata import version; print(version('pythia'))")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+      
+      - name: Build app bundle
+        run: |
+          cp -r api dist/
+          uv run shiv --site-packages dist --compressed --compile-pyc -o api-${{ steps.version_info.outputs.version }}.pyz -e api.__main__:main
+
+      - name: Upload API artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-${{ steps.version_info.outputs.version }}.pyz
+          path: api-${{ steps.version_info.outputs.version }}.pyz
+
